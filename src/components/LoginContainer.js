@@ -1,6 +1,8 @@
 import React from "react";
 import * as Yup from 'yup';
 import Login from "./Login";
+import {useDispatch, useSelector} from "react-redux";
+import {setLogin} from "../redux/actions/authActions";
 
 const LoginContainer = () => {
 
@@ -17,9 +19,12 @@ const LoginContainer = () => {
             .required('Required'),
     });
 
-    // only for testing
+    const dispatch = useDispatch();
+
+    const { authData, isAuth } = useSelector(({ auth }) => auth);
+
     const submitAuth = (authData) => {
-        alert(JSON.stringify(authData, null, 2));
+        dispatch(setLogin(authData));
     }
 
     return (

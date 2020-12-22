@@ -1,22 +1,24 @@
 import {SET_LOGIN, SET_LOGOUT} from "../actions/authActions";
 
 let initialState = {
-    email: null,
+    authData: null,
     isAuth: false,
 };
 
+
 const authReducer = (state = initialState, action) => {
+    console.log("state => ", state)
     switch (action.type) {
         case SET_LOGIN:
             return {
                 ...state,
-                email: action.payload,
+                authData: action.payload,
                 isAuth: true
             }
         case SET_LOGOUT:
             return {
                 ...state,
-                email: action.payload,
+                authData: action.payload,
                 isAuth: false
             }
         default:

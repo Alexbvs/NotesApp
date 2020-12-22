@@ -17,6 +17,7 @@ const Login = ({initialValues, validationSchema, submitButtonText, onSubmit}) =>
                     <Row>
                         <Col md={{span: 6, offset: 3}}>
                             <Form className="form">
+                                <h1 className="form__h1">Login</h1>
                                 <Row>
                                     <Col md={2}>
                                         <label htmlFor="email" className="form__label">Email:</label>
@@ -44,7 +45,6 @@ const Login = ({initialValues, validationSchema, submitButtonText, onSubmit}) =>
                                             : null}
                                         </div>
                                     </Col>
-
                                 </Row>
                                 <Button variant="success" size="lg" type="submit" className="form_btn">{submitButtonText}</Button>
                             </Form>
