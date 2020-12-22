@@ -1,5 +1,6 @@
 import React from "react";
 import LoginContainer from "./components/LoginContainer";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
     return (
