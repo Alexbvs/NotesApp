@@ -1,5 +1,6 @@
 import React from "react";
 import {Field, Form, Formik} from "formik";
+import PropTypes from "prop-types";
 import {Button} from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -54,6 +55,16 @@ const Login = ({initialValues, validationSchema, submitButtonText, onSubmit}) =>
             </Formik>
         </>
     )
+}
+
+Login.propTypes = {
+    initialValues: PropTypes.shape({
+        email: PropTypes.string.isRequired,
+        password: PropTypes.string.isRequired
+    }),
+    validationSchema: PropTypes.object.isRequired,
+    submitButtonText: PropTypes.string.isRequired,
+    onSubmit: PropTypes.func.isRequired
 }
 
 export default Login;

@@ -2,7 +2,7 @@ import React from "react";
 import * as Yup from 'yup';
 import Login from "./Login";
 import {useDispatch, useSelector} from "react-redux";
-import {setLogin} from "../redux/actions/authActions";
+import {loginFailed, loginSuccess, setLogin} from "../redux/actions/authActions";
 
 const LoginContainer = () => {
 
@@ -21,10 +21,17 @@ const LoginContainer = () => {
 
     const dispatch = useDispatch();
 
-    const { authData, isAuth } = useSelector(({ auth }) => auth);
+    const { authData, isAuth, errorMessage } = useSelector(({ auth }) => auth);
 
-    const submitAuth = (authData) => {
+    const submitAuth = (authData) => { debugger
         dispatch(setLogin(authData));
+        localStorage.getItem("user");
+        if (localStorage.user !== 0) {
+            dispatch(loginSuccess());
+         } else {
+            dispatch(loginFailed());
+            console.log(errorMessage);
+        }
     }
 
     return (
