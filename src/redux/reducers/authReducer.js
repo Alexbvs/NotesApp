@@ -1,55 +1,57 @@
 import {
-    LOGIN_FAILED,
+    LOGIN_REQUEST,
     LOGIN_SUCCESS,
-    LOGOUT_FAILED,
+    LOGIN_FAILED,
+    LOGOUT_REQUEST,
     LOGOUT_SUCCESS,
-    SET_LOGIN,
-    SET_LOGOUT
+    LOGOUT_FAILED,
 } from "../actions/authActions";
 
 let initialState = {
     authData: null,
     isAuth: false,
-    error: false,
-    errorMessage: ""
+    isLoading: false,
+    errorMessage: null
 };
 
 
 const authReducer = (state = initialState, action) => {
-    console.log("state => ", state)
     switch (action.type) {
-        case SET_LOGIN:
+        case LOGIN_REQUEST:
             return {
                 ...state,
                 authData: action.payload,
+                isLoading: true
             }
         case LOGIN_SUCCESS:
             return {
                 ...state,
-                isAuth: action.payload,
+                isAuth: true,
+                isLoading: false
             }
         case LOGIN_FAILED:
             return {
                 ...state,
-                error: true,
-                errorMessage: action.payload
+                errorMessage: action.payload,
+                isLoading: false
             }
-        case SET_LOGOUT:
+        case LOGOUT_REQUEST:
             return {
                 ...state,
-                authData: action.payload,
-                isAuth: false
+                authData: null,
+                isLoading: true
             }
         case LOGOUT_SUCCESS:
             return {
                 ...state,
-                isAuth: action.payload,
+                isAuth: false,
+                isLoading: false
             }
         case LOGOUT_FAILED:
             return {
                 ...state,
-                error: true,
-                errorMessage: action.payload
+                errorMessage: action.payload,
+                isLoading: false
             }
         default:
             return state;

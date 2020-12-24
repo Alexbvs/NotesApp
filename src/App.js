@@ -1,32 +1,33 @@
 import React from "react";
-import LoginContainer from "./components/LoginContainer";
-import {useDispatch, useSelector} from "react-redux";
+import LoginContainer from "./components/Login/LoginContainer";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {logoutFailed, logoutSuccess, setLogout} from "./redux/actions/authActions";
+import {Route, Switch, Redirect} from "react-router-dom";
+import HomePage from "./components/HomePage";
+
 
 function App() {
 
-    const dispatch = useDispatch();
-
-    const { errorMessage } = useSelector(({ auth }) => auth);
-
-//will be passed to the home page
-    const submitLogout = () => {
-        dispatch(setLogout());
-        localStorage.getItem("user");
-        if (localStorage.user === 0) {
-            dispatch(logoutSuccess());
-        } else {
-            dispatch(logoutFailed());
-            console.log(errorMessage);
-        }
-    };
 
     return (
         <div className="App">
-            <LoginContainer />
+            <Switch>
+                <Route path="/login" render={() => <LoginContainer/>}/>
+                <Route path="/notes" render={() => <HomePage/>}/>
+                <Redirect from='*' to="/notes"/>
+            </Switch>
         </div>
     );
 }
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+
