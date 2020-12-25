@@ -11,7 +11,7 @@ import {
 
 function* login({ payload }) {
     try {
-        localStorage.setItem("user", JSON.stringify(payload));
+        localStorage.setItem("user", JSON.stringify(payload.email));
 
         yield put(loginSuccess(payload));
     } catch (error) {

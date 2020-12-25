@@ -1,6 +1,6 @@
 import {useCallback} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {loginRequest, logoutRequest} from "../../redux/actions/authActions";
+import {loginRequest, loginSuccess, logoutRequest} from "../../redux/actions/authActions";
 
 export function useAuth() {
     const dispatch = useDispatch();
@@ -8,6 +8,7 @@ export function useAuth() {
 
     const onLogin = useCallback((authData) => dispatch(loginRequest(authData)), [dispatch]);
     const onLogout = useCallback(() => dispatch(logoutRequest()), [dispatch]);
+    const onLoginSuccess = useCallback(() => dispatch(loginSuccess()), [dispatch]);
 
     return {
         authData,
@@ -15,6 +16,7 @@ export function useAuth() {
         isLoading,
         errorMessage,
         onLogout,
-        onLogin
+        onLogin,
+        onLoginSuccess
     }
 }

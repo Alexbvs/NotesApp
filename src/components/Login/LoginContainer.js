@@ -14,7 +14,7 @@ const LoginContainer = () => {
             .min(8, 'Too Short!')
             .matches(
                 /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
-                'Must Contain 8 Characters, One Uppercase, One Lowercase and one Number'
+                'Must contain 8 Characters, 1 Uppercase, 1 Lowercase, 1 Number'
             )
             .required('Required'),
     });

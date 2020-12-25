@@ -26,10 +26,10 @@ export const logoutRequest = () => ({
 });
 
 export const logoutSuccess = () => ({
-    type: LOGIN_SUCCESS
+    type: LOGOUT_SUCCESS
 });
 
 export const logoutFailed = () => ({
-    type: LOGIN_FAILED,
+    type: LOGOUT_FAILED,
     payload: "logout failed"
 });
