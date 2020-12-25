@@ -1,17 +1,17 @@
 import { put, all, takeLatest } from "redux-saga/effects";
 import {
+    LOGIN_REQUEST,
+    LOGOUT_REQUEST,
     loginFailed,
     loginSuccess,
     logoutFailed,
     logoutSuccess,
-    SET_LOGIN,
-    SET_LOGOUT
 } from "../redux/actions/authActions";
 
 
 function* login({ payload }) {
     try {
-        localStorage.setItem("user", JSON.stringify(payload));
+        localStorage.setItem("user", JSON.stringify(payload.email));
 
         yield put(loginSuccess(payload));
     } catch (error) {
@@ -31,7 +31,7 @@ function* logout() {
 
 export default function* userSaga() {
     yield all([
-        yield takeLatest(SET_LOGIN, login),
-        yield takeLatest(SET_LOGOUT, logout),
+        yield takeLatest(LOGIN_REQUEST, login),
+        yield takeLatest(LOGOUT_REQUEST, logout),
     ]);
 }

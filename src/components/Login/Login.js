@@ -6,7 +6,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 const Login = ({initialValues, validationSchema, submitButtonText, onSubmit}) => {
-
     return (
         <>
             <Formik

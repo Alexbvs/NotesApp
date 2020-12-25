@@ -1,8 +1,8 @@
 import React from "react";
 import * as Yup from 'yup';
 import Login from "./Login";
-import {useDispatch, useSelector} from "react-redux";
-import {loginFailed, loginSuccess, setLogin} from "../redux/actions/authActions";
+import {useAuth} from "./useAuth";
+import {Redirect} from "react-router-dom";
 
 const LoginContainer = () => {
 
@@ -14,24 +14,19 @@ const LoginContainer = () => {
             .min(8, 'Too Short!')
             .matches(
                 /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
-                'Must Contain 8 Characters, One Uppercase, One Lowercase and one Number'
+                'Must contain 8 Characters, 1 Uppercase, 1 Lowercase, 1 Number'
             )
             .required('Required'),
     });
 
-    const dispatch = useDispatch();
+    const {onLogin, isAuth} = useAuth();
 
-    const { authData, isAuth, errorMessage } = useSelector(({ auth }) => auth);
+    const submitAuth = (authData) => {
+        onLogin(authData);
+    }
 
-    const submitAuth = (authData) => { debugger
-        dispatch(setLogin(authData));
-        localStorage.getItem("user");
-        if (localStorage.user !== 0) {
-            dispatch(loginSuccess());
-         } else {
-            dispatch(loginFailed());
-            console.log(errorMessage);
-        }
+    if (isAuth) {
+        return <Redirect to="/notes"/>;
     }
 
     return (
