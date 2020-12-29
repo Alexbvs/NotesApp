@@ -6,22 +6,24 @@ import HomePage from "./components/HomePage";
 import PrivateRoute from "./components/Routes/PrivateRoute";
 import PublicRoute from "./components/Routes/PublicRoute";
 import {useAuth} from "./components/Login/useAuth";
+import AddNoteContainer from "./components/Notes/AddNoteContainer";
 
 function App() {
 
     const {onLoginSuccess} = useAuth();
 
     useEffect(() => {
-        if (localStorage.user){
+        if (localStorage.getItem('user')){
             onLoginSuccess();
-        } // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+        }
+    }, [onLoginSuccess]);
 
     return (
         <div className="App">
             <Switch>
                 <PublicRoute path="/login" component={LoginContainer} />
                 <PrivateRoute path="/notes" component={HomePage} />
+                <PrivateRoute path="/note/add" component={AddNoteContainer} />
                 <Redirect from='*' to="/notes"/>
             </Switch>
         </div>
