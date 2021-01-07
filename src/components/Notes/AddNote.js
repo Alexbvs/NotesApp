@@ -11,7 +11,7 @@ const AddNote = ({initialValues, validationSchema, onSubmit}) => {
                 onSubmit={onSubmit}
                 validationSchema={validationSchema}
             >
-                {({errors, touched}) => (
+                {({errors, touched, values}) => (
                     <Form className="form__add">
                         <div className="form__add_field">
                             <label> Title* </label>
@@ -27,15 +27,17 @@ const AddNote = ({initialValues, validationSchema, onSubmit}) => {
                                 ? <div className="form__error">{errors.description}</div>
                                 : null}
                         </div>
-                        <div>
+                        <div  className="form__add_field">
                             <label> Category* </label>
-                            <select name="category">
+                            <select name="category"
+                                    // value={values.category}
+                            >
                                 <option disabled selected label="Select a category"/>
                                 <option value="Done" label="Done"/>
                                 <option value="In progress" label="In progress"/>
                             </select>
                         </div>
-                        <Button variant="success" size="lg" type="submit" className="form_btn">Add note</Button>
+                        <Button variant="success" size="lg" type="submit" className="form_btn btn_add">Add note</Button>
                     </Form>
                 )}
             </Formik>

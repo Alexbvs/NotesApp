@@ -1,16 +1,24 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {useNotes} from "./useNotes";
 import Note from "./Note";
 
 const Notes = () => {
 
-    const {items} = useNotes();
+    const {items, onGetNotes, onRemoveNotes} = useNotes();
 
-    return(
+    useEffect(() => {
+        if (localStorage.getItem('notes')) {
+            onGetNotes();
+        }
+    }, [onGetNotes]);
+
+
+    return (
         <div>
             {
                 items.length > 0
                     ? items.map(item => <Note key={item.id}
+                                              onRemoveNotes={onRemoveNotes}
                                               {...item} />)
                     : (<p>Your Notes is empty</p>)
             }

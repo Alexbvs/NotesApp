@@ -2,9 +2,9 @@ import React from "react";
 import AddNote from "./AddNote";
 import * as Yup from "yup";
 import {useNotes} from "./useNotes";
-import {Redirect} from "react-router-dom";
+import { v4 as uuidv4 } from 'uuid';
 
-const AddNoteContainer = () => {
+const AddNoteContainer = ({history}) => {
 
     const AddNoteSchema = Yup.object().shape({
         title: Yup.string()
@@ -20,16 +20,13 @@ const AddNoteContainer = () => {
 
     const submitAuth = (items) => {
         onAddNotes(items);
-    }
-
-    if (items.length > 0) {
-        return <Redirect to="/notes"/>;
+        history.push('/notes');
     }
 
     return (
         <AddNote validationSchema={AddNoteSchema}
                  initialValues={{
-                     id: 1,
+                     id: uuidv4(),
                      title: "",
                      userEmail: localStorage.getItem('user'),
                      category: "",

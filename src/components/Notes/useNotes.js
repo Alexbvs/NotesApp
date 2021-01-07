@@ -1,6 +1,11 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useCallback} from "react";
-import {addNotesRequest, getNotesRequest, updateNotesRequest} from "../../redux/actions/notesActions";
+import {
+    addNotesRequest,
+    getNotesRequest,
+    removeNotesRequest,
+    updateNotesRequest
+} from "../../redux/actions/notesActions";
 
 export function useNotes() {
     const dispatch = useDispatch();
@@ -9,6 +14,7 @@ export function useNotes() {
     const onGetNotes = useCallback((items) => dispatch(getNotesRequest(items)), [dispatch]);
     const onAddNotes = useCallback((note) => dispatch(addNotesRequest(note)), [dispatch]);
     const onUpdateNotes = useCallback((note) => dispatch(updateNotesRequest(note)), [dispatch]);
+    const onRemoveNotes = useCallback((id) => dispatch(removeNotesRequest(id)), [dispatch]);
 
     return {
         items,
@@ -17,6 +23,7 @@ export function useNotes() {
         errorMessage,
         onGetNotes,
         onAddNotes,
-        onUpdateNotes
+        onUpdateNotes,
+        onRemoveNotes
     }
 }

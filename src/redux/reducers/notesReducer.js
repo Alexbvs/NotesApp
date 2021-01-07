@@ -9,7 +9,7 @@ import {
 
     UPDATE_NOTES_REQUEST,
     UPDATE_NOTES_SUCCESS,
-    UPDATE_NOTES_FAILED
+    UPDATE_NOTES_FAILED, REMOVE_NOTES_REQUEST, REMOVE_NOTES_SUCCESS, REMOVE_NOTES_FAILED
 } from "../actions/notesActions";
 
 
@@ -56,7 +56,8 @@ const notesReducer = (state = initialState, action) => {
         case GET_NOTES_SUCCESS:
             return {
                 ...state,
-                isLoading: false
+                isLoading: false,
+                items: action.payload,
             }
         case GET_NOTES_FAILED:
             return {
@@ -95,6 +96,29 @@ const notesReducer = (state = initialState, action) => {
                 isLoading: false
             }
         case UPDATE_NOTES_FAILED:
+            return {
+                ...state,
+                isLoading: false,
+                errorMessage: action.payload
+            }
+
+
+        case REMOVE_NOTES_REQUEST:
+            const newItems = [
+                ...state.items
+            ];
+            const newItemsArray = newItems.filter(item => item.id !== action.payload)
+            return {
+                ...state,
+                isLoading: true,
+                items: newItemsArray
+            }
+        case REMOVE_NOTES_SUCCESS:
+            return {
+                ...state,
+                isLoading: false
+            }
+        case REMOVE_NOTES_FAILED:
             return {
                 ...state,
                 isLoading: false,

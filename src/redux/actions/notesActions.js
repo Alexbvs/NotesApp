@@ -10,13 +10,18 @@ export const UPDATE_NOTES_REQUEST = "UPDATE_NOTES_REQUEST";
 export const UPDATE_NOTES_SUCCESS = "UPDATE_NOTES_SUCCESS";
 export const UPDATE_NOTES_FAILED = "UPDATE_NOTES_FAILED";
 
+export const REMOVE_NOTES_REQUEST = "REMOVE_NOTES_REQUEST";
+export const REMOVE_NOTES_SUCCESS = "REMOVE_NOTES_SUCCESS";
+export const REMOVE_NOTES_FAILED = "REMOVE_NOTES_FAILED";
+
 export const getNotesRequest = (items) => ({
     type: GET_NOTES_REQUEST,
     payload: items,
 });
 
-export const getNotesSuccess = () => ({
-    type: GET_NOTES_SUCCESS
+export const getNotesSuccess = (items) => ({
+    type: GET_NOTES_SUCCESS,
+    payload: items,
 });
 
 export const getNotesFailed = () => ({
@@ -52,4 +57,20 @@ export const updateNotesSuccess = () => ({
 export const updateNotesFailed = () => ({
     type: UPDATE_NOTES_FAILED,
     payload: "add notes failed"
+});
+
+
+export const removeNotesRequest = (id) => ({
+    type: REMOVE_NOTES_REQUEST,
+    payload: id
+});
+
+export const removeNotesSuccess = (id) => ({
+    type: REMOVE_NOTES_SUCCESS,
+    payload: id
+});
+
+export const removeNotesFailed = () => ({
+    type: REMOVE_NOTES_FAILED,
+    payload: "remove notes failed"
 });

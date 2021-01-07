@@ -7,6 +7,7 @@ import PrivateRoute from "./components/Routes/PrivateRoute";
 import PublicRoute from "./components/Routes/PublicRoute";
 import {useAuth} from "./components/Login/useAuth";
 import AddNoteContainer from "./components/Notes/AddNoteContainer";
+import DetailNote from "./components/Notes/DetailNote";
 
 function App() {
 
@@ -22,8 +23,9 @@ function App() {
         <div className="App">
             <Switch>
                 <PublicRoute path="/login" component={LoginContainer} />
-                <PrivateRoute path="/notes" component={HomePage} />
-                <PrivateRoute path="/note/add" component={AddNoteContainer} />
+                <PrivateRoute exact path="/notes" component={HomePage} />
+                <PrivateRoute exact path="/notes/:noteId?" component={DetailNote} />
+                <PrivateRoute exact path="/note/add" component={AddNoteContainer} />
                 <Redirect from='*' to="/notes"/>
             </Switch>
         </div>
